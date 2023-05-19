@@ -12,6 +12,7 @@
   --teal: #20c997;
   --cyan: #0dcaf0;
   --black: #000;
+  --dark: #292a2b;
 }
 *,
 ::before,
@@ -22,7 +23,6 @@
   box-sizing: inherit;
   outline: 0 none;
 }
-
 
 h1,
 h2,
@@ -35,6 +35,7 @@ h6 {
 
 h1 {
   font-size: 3.5rem;
+  color: var(--blue);
 }
 h2 {
   font-size: 2.25rem;
@@ -51,22 +52,50 @@ h5 {
 h6 {
   font-size: 0.7rem;
 }
-
-
-
-@media (min-width:576px){
-  
+section,
+div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+section {
+  background-color: var(--dark);
+  height: 50vh;
 }
 
-@media (min-width:768px){
-  
+div {
+  width: 20%;
+  height: 50%;
+  background-color: var(--green);
+  font-size: 5rem;
+  transition: all 1s ease-in-out;
 }
-@media (min-width:992px){
 
+.light {
+  background-color: var(--green);
+  color: white;
+  transition: all 1s ease-in-out;
 }
-@media (min-width:1200px){
-
+.dark {
+  background-color: var(--yellow);
+  color: var(--dark);
+  transition: all 1s ease-in-out;
 }
-@media (min-width:1400px){
+nav,p{
+  font-size: 2rem;
+  color: var(--green);
+}
+.main{
+  margin-top:2em;
+}
+@media (min-width: 576px) {
+}
 
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+@media (min-width: 1400px) {
 }
