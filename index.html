@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task-list</title>
+    <title>Drog&Drop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,75 +18,13 @@
     <link rel="stylesheet" href="./css/style.css " />
   </head>
   <body>
-    <div>
-      <i class="fa-solid fa-gear"></i>
+    <div draggable="true" class="dragtarget">Caja verde</div>
+    <div draggable="true" class="dragtarget">
+      <!-- Para que se pueda arrastrar -->
+      Caja verde
     </div>
-    <div class="main">
-      <div class="header">
-      <h1>Task List</h1>
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="button1 btn btn-primary">ALL</button>
-        <button type="button" class="button2 btn btn-primary">TO DO</button>
-        <button type="button" class="button3 btn btn-primary">DONE</button>
-      </div>
-    </div>
-      <div class="alert dismissible">
-        Please,enter some text.
-        <i class="fa-solid fa-square-xmark"></i>
-      </div>
-      <div class="info autoDismissible">
-        Task added successfully.
-        <i class="fa-solid fa-square-check"></i>
-      </div>
-      <form name="new-task">
-        <label for="task">
-          <input
-            type="text"
-            name="task"
-            id="task"
-            placeholder="Add a new task"
-          />
-          <div class="arrow">
-            <i class="fa-solid fa-right-long fa-2xl"></i>
-          </div>
-        </label>
-      </form>
-      <div class="container">
-        <table>
-          <thead>
-            <tr>
-              <th>Dont Forget to Do This</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="0">
-              <td>
-                <i class="fa-solid fa-circle-check fa-2x"></i>
-                <span class="task tarea" contenteditable="true" data-complete="false"> Learn HTML!</span>
-              </td>
-              <td class="start"></td>
-              <td class="end"></td>
-              <td>
-                <span class="fa-stack fa-2x">
-                  <i class="fa-solid fa-square fa-stack-2x"></i>
-                  <i class="fa-solid fa-pencil fa-stack-1x fa-inverse"></i>
-                </span>
-              </td>
-              <td>
-                <span class="fa-stack fa-2x">
-                  <i class="fa-solid fa-square fa-stack-2x"></i>
-                  <i class="fa-solid fa-trash fa-stack-1x fa-inverse"></i>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <div id="droptarget"></div>
+    <div id="carro"></div>
   </body>
   <script src="./js/app.js"></script>
 </html>
