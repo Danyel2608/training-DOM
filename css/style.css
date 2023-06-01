@@ -1,4 +1,4 @@
-:root {
+/* :root {
   box-sizing: border-box;
   font-size: 0.875rem;
   font-family: "Rubik", sans-serif;
@@ -14,7 +14,7 @@
   --black: #000;
   --dark: #292a2b;
 }
-*,
+*,  // * sirve para seleccionar todos los elementos a continuacion,es decir,TODOS
 ::before,
 ::after {
   padding: 0;
@@ -22,44 +22,406 @@
   border: 0;
   box-sizing: inherit;
   outline: 0 none;
+} */
+/* 
+ * bitGames v1.0.0-alpha (https://github.com/Ch3ssMaster/bitgames)
+ * Copyright 2021 Antonio Cebrián Mesa
+ * Licensed under MIT (https://github.com/Ch3ssMaster/bitgames/blob/main/LICENSE.md)
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Antic+Slab&family=Rubik:wght@400;500&family=Comfortaa:wght@500;600&family=Kameron:wght@400;700&family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Lato:wght@100;400;700&family=Pacifico&display=swap");
+
+html {
+  font-size: 14px;
 }
 body {
-  background-color: var(--dark);
-  justify-content: space-around;
-  display: flex;
-  flex-wrap: wrap;
+  font-family: "Antic Slab", serif;
+  min-height: 75rem;
+  padding-top: 4.5rem;
+  background-color: #edf1f2;
 }
-div {
-  width: 150px;
-  min-height: 150px;
-  margin-top: 5%;
-  background-color: var(--green);
-  font-size: 1.7rem;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  color: white;
+h4,
+h5.modal-title {
+  font-family: "Comfortaa", cursive;
 }
-div#droptarget {
-  background-color: var(--blue);
-  flex-direction: column;
+h5 {
+  font-family: "Pacifico", cursive;
 }
-span {
-  display: block;
-  width: 100%;
-  text-align: center;
-  border: 1px solid var(--dark);
-  margin: .5em auto;
-  color: var(--dark);
-  padding: .5em 0;
-  border-radius: .3rem;
+.container {
+  max-width: 960px;
+}
+#header {
+  background-color: #293241;
+  color: #ee6c4d;
+}
+.logo {
+  font-size: 2.5em;
+  color: #ffc107;
+}
+.logo span,
+.fa-joystick {
+  color: #fdfffc;
+}
+.fa-bag-shopping{
+  color: #24292e;
+}
+.fa-basket-shopping {
+  color: white !important;
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+.fa-basket-shopping:hover {
+  color: #c61a27 !important;
+  opacity: 0.8;
+  -webkit-transform: rotateZ(-30deg);
+  -ms-transform: rotateZ(-30deg);
+  transform: rotateZ(-30deg);
+}
+.fa-person-circle {
+  color: #98c1d9;
+}
+button.close:focus {
+  outline: none;
 }
 
-#carro {
-  width: 60%;
-  margin: 3em auto;
+/* Pulse */
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+.hvr-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-animation-name: hvr-pulse;
+  animation-name: hvr-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* Login */
+#loginModal {
+  font-size: 1.3em;
+}
+#loginModal .modal-footer button {
+  font-size: 1.1em;
+  text-transform: capitalize;
+}
+#loginModal .modal-header {
+  background-color: #98c1d9;
+  color: #edf5f5;
+  font-weight: bold;
+}
+.fa-user-times {
+  font-size: 1.4em;
+  color: #293241;
+}
+
+/* Cards */
+.pricing-header {
+  max-width: 700px;
+}
+.card-deck .card {
+  min-width: 220px;
+  max-width: 270px;
+  transition: all 0.2s ease;
+}
+.card-deck .card:hover {
+  box-shadow: 1px 1px #53a7ea, 2px 2px #53a7ea, 3px 3px #53a7ea;
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Shopping list */
+.fa-shopping-cart,
+.fa-money-check {
+  margin-right: 2%;
+  font-size: 1.3em;
+}
+.pricing-card-title {
+  font-family: "Kameron", serif;
+}
+.card-footer {
+  background-color: #3d5a80;
   min-height: 100px;
-  background-color: var(--yellow);
-  flex-direction: column;
-  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table td {
+  vertical-align: middle !important;
+}
+
+td .card {
+  max-width: 8rem;
+}
+
+td button span {
+  font-size: 1.3em;
+  font-weight: bolder;
+}
+#cartPurchased,
+#addedToCart,
+#alreadyAddedToCart {
+  font-size: 1.5em;
+}
+#cartPurchased .modal-content {
+  background-color: #d4edda;
+}
+#addedToCart .modal-content {
+  background-color: #d1ecf1;
+}
+#alreadyAddedToCart .modal-content {
+  background-color: #fff3cd;
+}
+
+/* Quantity selectors */
+.quantity {
+  position: relative;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.quantity input {
+  width: 6rem;
+  height: 4rem;
+  line-height: 1.65;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  border: 1px solid #eee;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.quantity input:focus {
+  outline: 0;
+}
+
+.quantity-nav {
+  float: left;
+  position: relative;
+  height: 4rem;
+}
+
+.quantity-button {
+  position: relative;
+  cursor: pointer;
+  border-left: 1px solid #eee;
+  width: 2rem;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  font-weight: bolder;
+  line-height: 1.7;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.quantity-button.quantity-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.quantity-button.quantity-down {
+  position: absolute;
+  bottom: -1px;
+  height: 50%;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  opacity: 0.3;
+}
+/* Footer */
+footer {
+  background-color: #fff;
+  border-radius: 5px;
+  font-family: "Rubik", sans-serif;
+}
+footer ul {
+  max-width: 75%;
+  margin: auto;
+}
+footer li {
+  margin: 0 5%;
+}
+footer li a {
+  color: #293241;
+  font-size: 3em;
+}
+.list-group-horizontal-md li {
+  border: none !important;
+  padding: 0;
+}
+.fa-linkedin {
+  color: #0a66c2;
+}
+.fa-github-square {
+  color: #24292e;
+}
+.fa-twitter-square {
+  color: #1da1f2;
+}
+footer h5 {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.8em;
+}
+footer small {
+  font-weight: bolder;
+  color: #3d5a80;
+  font-size: 0.9em;
+}
+.cig {
+  color: #ee6c4d;
+}
+.cig:hover {
+  text-decoration: none;
+}
+.cig span {
+  border-bottom: 3px solid #ee6c4d;
+  font-size: 1.5em;
+  transition: all 0.25s linear;
+  position: relative;
+}
+.cig span:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #61a3ff;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  transform-origin: left;
+  transform: scale(0);
+  transition: 0.25s linear;
+}
+.cig span:hover:before {
+  transform: scale(1);
+}
+/* User profile */
+.shopping {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 2em;
+  font-weight: lighter;
+  color: #fff !important;
+}
+.alert {
+  font-size: 1.4em;
+}
+
+/* New product */
+.new-product h5 {
+  font-family: "Comfortaa", cursive;
+  font-size: 1.8em;
+}
+.new-product label,
+.new-product input,
+.new-product span,
+.new-product select {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.2em;
+}
+.new-product button,
+.custom-file input {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.5em;
+}
+.new-product input .new-product button {
+  font-weight: bold;
+}
+.product-img-default {
+  max-width: 100%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-img-default img,
+#uploadButton {
+  max-width: 250px;
+}
+.new-product .fa-stack {
+  font-size: 1.5em;
+}
+
+/* Responsive */
+@media (max-width: 800px) and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  body {
+    padding: 4rem 3rem 2rem;
+  }
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+  .card-deck .card {
+    margin: auto;
+    min-width: 190px;
+    max-width: 220px;
+  }
+  .h1,
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 360px) {
+  body {
+    padding-top: 11.5rem;
+  }
+  .card-deck .card {
+    margin: auto;
+  }
 }
