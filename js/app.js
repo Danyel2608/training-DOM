@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-  //Variables
+   //====================VARIABLES===================================
   let id = 0;
   let text = "";
   let alert = document.querySelector(".alert");
@@ -11,9 +11,12 @@ window.addEventListener("load", () => {
   let trash = document.querySelectorAll(".fa-trash");
   let task = document.querySelectorAll(".task");
   let info = document.querySelector(".info");
-  let start= document.querySelectorAll(".start")
-  let end= document.querySelectorAll(".end")
-
+  let start = document.querySelector(".start");
+  let end = document.querySelector(".end");
+  let body = document.querySelector(".body");
+  let date = new Date();
+  // console.log(date);
+  start.innerHTML = date;
   // console.log(button3);
   //----------------------------------------------------------------------------------//
   // Norificacion de error si no se escribe nada
@@ -21,16 +24,25 @@ window.addEventListener("load", () => {
     alert.classList.add("dismissible");
   });
 
-  //----------------------------------------------------------------------------------//
+   //====================INPUT PRINCIPAL + ARROW===================================
 
   //Texto (add a new task ) para escribir
-  input.addEventListener("focus", () => {
-    document.addEventListener("keydown", (event) => {
-      if (event.code == "Enter" || event.code == "Numpudenter") {
-        event.preventDefault();
-      }
-    });
+  input.addEventListener("focus", (e) => {
+    saveInput(e, true);
   });
+  input.addEventListener("blur", (e) => {
+    saveInput(e, false);
+  });
+
+  const saveInput = (e, onfocus) => {
+    if (onfocus) {
+      document.addEventListener("keydown", (event) => {
+        if (event.code == "Enter" || event.code == "Numpudenter") {
+          event.preventDefault();
+        }
+      });
+    }
+  };
   //Flecha con marco azul y texto anterior para que salga o no la notificacion si no
   //se escribe nada y le damos a la flecha.
   arrow.addEventListener("click", (event) => {
@@ -48,6 +60,7 @@ window.addEventListener("load", () => {
       //Crear una nueva fila:
 
       document.querySelector("tbody").appendChild(generateRow(id, text));
+
       if (!alert.classList.contains("dismissible")) {
         alert.classList.add("dismissible");
       } //Si escribo algo que no aparezca alert
@@ -61,6 +74,7 @@ window.addEventListener("load", () => {
   //Interpolacion($) sirve para sustituir ese espacio por una variable o string que tengamos que poner ahi
   //solo cambia la primera columna de la tabla por $
 
+   //====================ARRAY PARA TODOS LOS ELEMENTOS ICONOS==================================
   //como done es una lista de nodos y no es uno solo,se tiene que hacer asi:
   //Circulo Check Verde #Part1:
   done.forEach((item) => {
@@ -87,7 +101,7 @@ window.addEventListener("load", () => {
     });
   });
 
-  //----------------------------------------------------------------------------------//
+ //==================== EVENTOS ICONOS CHECK,EDIT,TRASH===================================
   //Editar #Part 2
 
   const editTask = (e, onFocus) => {
@@ -126,9 +140,14 @@ window.addEventListener("load", () => {
         if (empty.trim() == "") {
           removeRow(editable, true);
         }
+        let e1 =
+          e.target.parentNode.parentNode.firstElementChild.nextElementSibling
+            .nextElementSibling;
+        date = new Date();
+        e1.innerHTML = date;
       });
     } else {
-      let editable =
+      editable =
         e.target.parentNode.parentNode.previousElementSibling
           .previousElementSibling.previousElementSibling.lastElementChild;
       editable.classList.add("editable");
@@ -158,14 +177,13 @@ window.addEventListener("load", () => {
       e.target.parentNode.parentNode.parentNode.remove();
     }
   };
-
-  let row = 1;
-
+ //====================GENERAR ROW===================================
   //Refactorizamos el código de la función:
   //Flecha con marco azul:
   const generateRow = (id, text) => {
     let newrow = document.createElement("tr");
     newrow.setAttribute("id", id);
+    newrow.classList.add("first");
     newrow.innerHTML = `
     <td>
       <i class="fa-solid fa-circle-check fa-2x"></i>
@@ -173,7 +191,7 @@ window.addEventListener("load", () => {
       ${text} 
       </span>
       </td>
-      <td class="start"></td>
+      <td class="start">${date}</td>
       <td class="end"></td>
       <td>
       <span class="fa-stack fa-2x">
@@ -181,7 +199,6 @@ window.addEventListener("load", () => {
         <i class="fa-solid fa-pencil fa-stack-1x fa-inverse"></i>
       </span>
       </td>
-      
       <td>
       <span class="fa-stack fa-2x">
           <i class="fa-solid fa-square fa-stack-2x"></i>
@@ -198,7 +215,7 @@ window.addEventListener("load", () => {
     newrow.firstElementChild.lastElementChild.addEventListener("click", (e) => {
       editTask(e, true);
     });
-    newrow.firstElementChild.lastElementChild.previousElementSibling.addEventListener(
+    newrow.lastElementChild.previousElementSibling.addEventListener(
       "click",
       (e) => {
         editTask(e, false);
@@ -207,11 +224,10 @@ window.addEventListener("load", () => {
     newrow.lastElementChild.firstElementChild.addEventListener("click", (e) => {
       removeRow(e, false);
     });
-    row = row + 1;
     return newrow;
   };
 
-  //BOTONES
+ //====================BOTONES===================================
   let button1 = document.querySelector(".button1");
   let button2 = document.querySelector(".button2");
   let button3 = document.querySelector(".button3");
@@ -269,9 +285,76 @@ window.addEventListener("load", () => {
       }
     }
   }
+  //====================ATAJOS DE TECLADO===================================
 
-  //Start y end
-  start.forEach((e) => {
-    console.log(e.target);
+  input.addEventListener("keydown", (e) => {
+    if (e.code == "Tab") {
+      e.preventDefault();
+      // let textInput=e.target.innerHTML
+    }
   });
+  body.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key == "Insert") {
+      e.preventDefault();
+      console.log(e.code);
+      input =
+        e.target.firstElementChild.nextElementSibling.firstElementChild
+          .nextElementSibling.nextElementSibling.nextElementSibling
+          .firstElementChild.firstElementChild;
+      input.focus();
+    }
+    if (e.ctrlKey && e.shiftKey && e.code === "KeyS") {
+      e.preventDefault();
+      let textoEscrito = input.value;
+      // console.log(textoEscrito);
+      if (textoEscrito != "") {
+        text = input.value;
+        document.querySelector("tbody").appendChild(generateRow(id, text));
+        info.classList.remove("autoDismissible");
+        setTimeout(() => {
+          info.classList.add("autoDismissible");
+        }, 5000);
+      } else if (textoEscrito == "") {
+        alert.classList.remove("dismissible");
+      }
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == "F1") {
+      e.preventDefault();
+      let delet = document.getElementById("tbody");
+      let firstRow = delet.firstElementChild;
+      firstRow.remove();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == "F2") {
+      e.preventDefault();
+      let delet = document.getElementById("tbody");
+      let lastRow = delet.lastChild;
+      lastRow.remove();
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == "F5") {
+      e.preventDefault();
+      let editR = document.getElementById("tbody");
+      let editable = editR.firstElementChild.firstElementChild.lastElementChild;
+      editable.classList.add("editable")
+      editable.onClick;
+    }
+    if (e.ctrlKey && e.shiftKey && e.key == "F6") {
+      e.preventDefault();
+      let editR = document.getElementById("tbody");
+      let editable = editR.lastElementChild.firstElementChild.lastElementChild;
+      editable.classList.add("editable")
+    }
+    if (e.ctrlKey && e.key=="Delete") {
+      e.preventDefault();
+      let deletTable=document.getElementById("tbody");
+      console.log(deletTable);
+      const idS=document.querySelectorAll("td.first");
+      console.log(idS.length);
+      // deletTable.remove();
+      // for (let index = 0; index < array.length; index++) {
+      //   const element = array[index];
+        
+      // }
+    }
+  });
+
 });
