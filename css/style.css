@@ -38,7 +38,6 @@ html {
 body {
   font-family: "Antic Slab", serif;
   min-height: 75rem;
-  padding-top: 4.5rem;
   background-color: #edf1f2;
 }
 h4,
@@ -51,10 +50,6 @@ h5 {
 .container {
   max-width: 960px;
 }
-#header {
-  background-color: #293241;
-  color: #ee6c4d;
-}
 .logo {
   font-size: 2.5em;
   color: #ffc107;
@@ -63,8 +58,9 @@ h5 {
 .fa-joystick {
   color: #fdfffc;
 }
-.fa-bag-shopping{
+.fa-bag-shopping {
   color: #24292e;
+  transform: rotate(30deg);
 }
 .fa-basket-shopping {
   color: white !important;
@@ -72,7 +68,7 @@ h5 {
   transition: all 0.2s ease;
 }
 .fa-basket-shopping:hover {
-  color: #c61a27 !important;
+  color: #377020 !important;
   opacity: 0.8;
   -webkit-transform: rotateZ(-30deg);
   -ms-transform: rotateZ(-30deg);
@@ -83,6 +79,23 @@ h5 {
 }
 button.close:focus {
   outline: none;
+}
+/* Box shoppingCart icon */
+.box {
+  opacity: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: static;
+  z-index: unset;
+  visibility: hidden;
+}
+/* .visible{
+} */
+
+.alert1,.alert2,.alert3{
+  position: relative;
+  display:none;
 }
 
 /* Pulse */
@@ -141,17 +154,16 @@ button.close:focus {
 
 /* Cards */
 .pricing-header {
-  max-width: 700px;
+  max-width: 100%;
 }
 .card-deck .card {
-  min-width: 220px;
-  max-width: 270px;
+  min-width: 270px;
+  max-width: 300px;
   transition: all 0.2s ease;
 }
+
 .card-deck .card:hover {
   box-shadow: 1px 1px #53a7ea, 2px 2px #53a7ea, 3px 3px #53a7ea;
-  -webkit-transform: translateX(-3px);
-  transform: translateX(-3px);
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -170,14 +182,16 @@ button.close:focus {
 }
 .pricing-card-title {
   font-family: "Kameron", serif;
+  font-size: 2rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 .card-footer {
-  background-color: #3d5a80;
-  min-height: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
 }
+
 .table td {
   vertical-align: middle !important;
 }
@@ -216,9 +230,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
+/* input[type="number"] {
   -moz-appearance: textfield;
-}
+} */
 
 .quantity input {
   width: 6rem;
@@ -282,6 +296,7 @@ input[type="number"] {
   text-decoration: none;
   opacity: 0.3;
 }
+
 /* Footer */
 footer {
   background-color: #fff;
@@ -303,17 +318,9 @@ footer li a {
   border: none !important;
   padding: 0;
 }
-.fa-linkedin {
-  color: #0a66c2;
-}
-.fa-github-square {
-  color: #24292e;
-}
-.fa-twitter-square {
-  color: #1da1f2;
-}
+
 footer h5 {
-  font-family: "Rubik", sans-serif;
+  font-family: "Share Tech Mono", monospace;
   font-size: 1.8em;
 }
 footer small {
@@ -321,7 +328,7 @@ footer small {
   color: #3d5a80;
   font-size: 0.9em;
 }
-.cig {
+/* .cig {
   color: #ee6c4d;
 }
 .cig:hover {
@@ -347,8 +354,8 @@ footer small {
   transition: 0.25s linear;
 }
 .cig span:hover:before {
-  transform: scale(1);
-}
+  transform: scale(1); */
+/* } */
 /* User profile */
 .shopping {
   font-family: "Share Tech Mono", monospace;
@@ -357,12 +364,12 @@ footer small {
   color: #fff !important;
 }
 .alert {
-  font-size: 1.4em;
+  font-size: 0.8em;
 }
 
 /* New product */
 .new-product h5 {
-  font-family: "Comfortaa", cursive;
+  font-family: "Share Tech Mono", monospace;
   font-size: 1.8em;
 }
 .new-product label,
@@ -394,15 +401,28 @@ footer small {
 .new-product .fa-stack {
   font-size: 1.5em;
 }
+.buttonFruit {
+  background-color: rgb(224, 224, 48);
+  margin: 5%;
+  padding: 1.5%;
+  border: 0.1rem;
+  border-radius: 0.3rem;
+  margin-top: 0;
+}
+.buttonFruit:hover:hover {
+  background-color: rgb(255, 255, 0);
+  transition: all 0.3s ease-in-out;
+}
 
 /* Responsive */
+
 @media (max-width: 800px) and (min-width: 768px) {
   html {
     font-size: 16px;
   }
-  body {
+  /* body {
     padding: 4rem 3rem 2rem;
-  }
+  } */
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
@@ -418,9 +438,9 @@ footer small {
 }
 
 @media (max-width: 767px) and (min-width: 360px) {
-  body {
+  /* body {
     padding-top: 11.5rem;
-  }
+  } */
   .card-deck .card {
     margin: auto;
   }
