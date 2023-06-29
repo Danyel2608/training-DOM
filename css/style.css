@@ -103,7 +103,7 @@ h5 {
 
 td .card {
   max-width: 8rem;
-  margin: auto;
+  margin:auto;
 }
 
 td button span {
@@ -241,7 +241,8 @@ footer {
   html {
     font-size: 1.285rem;
   }
-  .modal-footer {
+  .modal-footer{
+  
     font-size: 1.8rem;
   }
 }

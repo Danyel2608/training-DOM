@@ -1,5 +1,5 @@
 const GenerateContent = class {
-  //Properties
+  // Properties
   fruits = {
     1: ["01", "grapes", "uvas", 4.95],
     2: ["02", "kiwis", "kiwis", 3.85],
@@ -24,61 +24,61 @@ const GenerateContent = class {
     21: ["21", "watermelons", "sandías", 0.49],
   };
 
-  //Methods
+  // Methods
   getYear = () => {
     let year = new Date();
     document.querySelector(".date").innerHTML += year.getFullYear();
   };
-  //PRODUCE UN NUEVO PRODUCTO Y LO ALMACENA EN CARD EN FORMA DE STRING
+
   getProductFormat = () => {
-    let product = `
-    <div
-          class="draggable card mb-4 shadow-sm"
-          draggable="true"
-          product-id="xxx"
-        >
-          <img src="./img/fr-nnn.jpg" 
-            class="card-img-top" 
-            alt="fruitName" 
-            draggable="false" 
-          />
-          <div class="card-body">
-            <h1 class="card-tittle pricing-card-title">
-              yyy € <small class="text-muted">/ Kg</small>
-            </h1>
-        </div>
-        <div class="d-grid gap-2">
-          <button type="button" class="btn btn-lg btn-block btn-warning">
-            Add to cart
-          </button>
-        </div>
-        <div class="card-footer bg-info text-white">
-          <h4 class="my-0 font-weight-normal">zzz</h4>
-        </div>
-      </div>
-    </div>`;
+    let product = ` <div
+     class="draggable card mb-4 shadow-sm"
+     draggable="true"
+     product-id="xxx"
+   >
+     <img
+       src="img/fr-nnn.jpg"
+       class="card-img-top"
+       alt="fruitName"
+       draggable="false"
+     />
+     <div class="card-body">
+       <h1 class="card-title pricing-card-title">
+         yyy € <small class="text-muted">/ Kg</small>
+       </h1>
+
+       <div class="d-grid gap-2">
+         <button type="button" class="btn btn-lg btn-block btn-warning">
+           Add to cart
+         </button>
+       </div>
+     </div>
+     <div class="card-footer bg-info text-white">
+       <h4 class="my-0 font-weight-normal">zzz</h4>
+     </div>
+   </div>`;
     return product;
   };
-  //GENERAR HTML A TRVES DEL STRING
-  htmlToelements = (html) => {
+
+  htmlToElement = (html) => {
     let card = document.createElement("template");
     html = html.trim();
     card.innerHTML = html;
+    // console.log(card);
     return card.content.firstElementChild;
   };
-
-  //PASAR LO QUE HAY EN FRUITS A LA PÁGINA
   setPageContent = (fruits) => {
     let card = "";
-    let productContainer = document.querySelector("#product-list");
-    for (let productNumber in fruits) {
+    for (const f in fruits) {
       card = this.getProductFormat();
-      card = card.replace(/xxx/, fruits[productNumber][0]);
-      card = card.replace(/nnn/, fruits[productNumber][0]);
-      card = card.replace(/fruitName/, fruits[productNumber][1]);
-      card = card.replace(/yyy/, fruits[productNumber][3]);
-      card = card.replace(/zzz/, fruits[productNumber][1].trim());
-      productContainer.appendChild(this.htmlToelements(card));
+      card = card.replace(/xxx/, fruits[f][0]);
+      card = card.replace(/nnn/, fruits[f][0]);
+      card = card.replace(/fruitName/, fruits[f][2]);
+      card = card.replace(/yyy/, fruits[f][3]);
+      card = card.replace(/zzz/, fruits[f][1].trim());
+      document
+        .getElementById("products-list")
+        .appendChild(this.htmlToElement(card));
     }
   };
 };
