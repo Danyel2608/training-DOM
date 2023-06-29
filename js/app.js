@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-   //====================VARIABLES===================================
+  //====================VARIABLES===================================
   let id = 0;
   let text = "";
   let alert = document.querySelector(".alert");
@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
     alert.classList.add("dismissible");
   });
 
-   //====================INPUT PRINCIPAL + ARROW===================================
+  //====================INPUT PRINCIPAL + ARROW===================================
 
   //Texto (add a new task ) para escribir
   input.addEventListener("focus", (e) => {
@@ -36,9 +36,9 @@ window.addEventListener("load", () => {
 
   const saveInput = (e, onfocus) => {
     if (onfocus) {
-      document.addEventListener("keydown", (event) => {
-        if (event.code == "Enter" || event.code == "Numpudenter") {
-          event.preventDefault();
+      document.addEventListener("keydown", (e) => {
+        if (e.code == "Enter" || e.code == "Numpudenter") {
+          e.preventDefault();
         }
       });
     }
@@ -74,8 +74,9 @@ window.addEventListener("load", () => {
   //Interpolacion($) sirve para sustituir ese espacio por una variable o string que tengamos que poner ahi
   //solo cambia la primera columna de la tabla por $
 
-   //====================ARRAY PARA TODOS LOS ELEMENTOS ICONOS==================================
+  //====================ARRAY PARA TODOS LOS ELEMENTOS ICONOS==================================
   //como done es una lista de nodos y no es uno solo,se tiene que hacer asi:
+
   //Circulo Check Verde #Part1:
   done.forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -101,7 +102,7 @@ window.addEventListener("load", () => {
     });
   });
 
- //==================== EVENTOS ICONOS CHECK,EDIT,TRASH===================================
+  //==================== EVENTOS ICONOS CHECK,EDIT,TRASH===================================
   //Editar #Part 2
 
   const editTask = (e, onFocus) => {
@@ -121,7 +122,6 @@ window.addEventListener("load", () => {
           }
           //Borrar fila si hay espacios
           let empty = editable.target.textContent.replaceAll(" ", "");
-          console.log(empty);
           if (empty.trim() == "") {
             removeRow(editable, true);
           }
@@ -177,7 +177,7 @@ window.addEventListener("load", () => {
       e.target.parentNode.parentNode.parentNode.remove();
     }
   };
- //====================GENERAR ROW===================================
+  //====================GENERAR ROW===================================
   //Refactorizamos el código de la función:
   //Flecha con marco azul:
   const generateRow = (id, text) => {
@@ -227,11 +227,10 @@ window.addEventListener("load", () => {
     return newrow;
   };
 
- //====================BOTONES===================================
+  //====================BOTONES===================================
   let button1 = document.querySelector(".button1");
   let button2 = document.querySelector(".button2");
   let button3 = document.querySelector(".button3");
-  let task1 = document.querySelectorAll(".tarea");
 
   button1.addEventListener("click", () => {
     mostrarAll();
@@ -287,12 +286,14 @@ window.addEventListener("load", () => {
   }
   //====================ATAJOS DE TECLADO===================================
 
-  input.addEventListener("keydown", (e) => {
-    if (e.code == "Tab") {
+  body.addEventListener("keydown", (e) => {
+    if (e.key == "Tab") {
       e.preventDefault();
-      // let textInput=e.target.innerHTML
+      input.value.trim() == ""
+      input.value = ""
     }
   });
+
   body.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key == "Insert") {
       e.preventDefault();
@@ -334,27 +335,21 @@ window.addEventListener("load", () => {
       e.preventDefault();
       let editR = document.getElementById("tbody");
       let editable = editR.firstElementChild.firstElementChild.lastElementChild;
-      editable.classList.add("editable")
-      editable.onClick;
+      editable.classList.add("editable");
     }
     if (e.ctrlKey && e.shiftKey && e.key == "F6") {
       e.preventDefault();
       let editR = document.getElementById("tbody");
       let editable = editR.lastElementChild.firstElementChild.lastElementChild;
-      editable.classList.add("editable")
+      editable.classList.add("editable");
     }
-    if (e.ctrlKey && e.key=="Delete") {
+    if (e.ctrlKey && e.key == "Delete") {
       e.preventDefault();
-      let deletTable=document.getElementById("tbody");
-      console.log(deletTable);
-      const idS=document.querySelectorAll("td.first");
-      console.log(idS.length);
-      // deletTable.remove();
-      // for (let index = 0; index < array.length; index++) {
-      //   const element = array[index];
-        
-      // }
+      let deleteTable = document.querySelectorAll(".first");
+      console.log(deleteTable);
+      for (let index = 0; index < deleteTable.length; index++) {
+        deleteTable[index].innerHTML = "";
+      }
     }
   });
-
 });
