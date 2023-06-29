@@ -284,7 +284,7 @@ window.addEventListener("load", () => {
       }
     }
   }
-  //====================ATAJOS DE TECLADO===================================
+  //====================ATAJOS DE TECLADO PARA TASK LIST===================================
 
   body.addEventListener("keydown", (e) => {
     if (e.key == "Tab") {
